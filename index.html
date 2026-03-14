@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Long Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #fff;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      padding: 2.5rem 3.5rem 2.5rem 18%;
+    }
+
+    .wordmark {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 3.5rem 5rem 18%;
+      max-width: 900px;
+    }
+
+    .headline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.25rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #000;
+      width: 2.5rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .body-copy p {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      line-height: 1.75;
+      font-weight: 400;
+      color: #111;
+    }
+
+    .body-copy p + p {
+      margin-top: 1.25rem;
+    }
+
+    .signup {
+      display: flex;
+      max-width: 400px;
+      margin-top: 3.25rem;
+    }
+
+    .signup input[type="email"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #000;
+      border-right: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      outline: none;
+      background: #fff;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .signup input[type="email"]::placeholder { color: #bbb; }
+
+    .signup button {
+      padding: 0.75rem 1.5rem;
+      background: #000;
+      color: #fff;
+      border: 1px solid #000;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      border-radius: 0;
+    }
+
+    .signup button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    footer {
+      padding: 2rem 3.5rem 2rem 18%;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: #bbb;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      nav, main, footer { padding-left: 1.75rem !important; padding-right: 1.75rem; }
+      main { padding-bottom: 4rem; }
+      .signup { flex-direction: column; max-width: 100%; }
+      .signup input[type="email"] { border-right: 1px solid #000; border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="wordmark">The Long Room</span>
+  </nav>
+
+  <main>
+    <h1 class="headline">Most public argument<br>is performance.</h1>
+    <hr>
+    <div class="body-copy">
+      <p>Two people talking past each other for an audience that's already made up its mind.</p>
+      <p>We produce something different: debates where minds actually change — on stage, in real time, in front of a live audience.</p>
+      <p>Sign up to follow what we're building.</p>
+    </div>
+    <form class="signup" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Sign up</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2026 Long Room Media
+  </footer>
+
+</body>
+</html>
