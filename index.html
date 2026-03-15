@@ -118,6 +118,15 @@
       letter-spacing: 0.06em;
     }
 
+    .signup-message {
+      margin-top: 1.25rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #555;
+      letter-spacing: 0.04em;
+    }
+
     @media (max-width: 600px) {
       nav, main, footer { padding-left: 1.75rem !important; padding-right: 1.75rem; }
       main { padding-bottom: 4rem; }
@@ -141,15 +150,46 @@
       <p>Three hours, two experts, one question.</p>
       <p>Follow along</p>
     </div>
-    <form class="signup" onsubmit="return false;">
-      <input type="email" placeholder="your@email.com" required>
+    <form class="signup" id="signup-form">
+      <input type="email" id="signup-email" placeholder="your@email.com" required>
       <button type="submit">Sign up</button>
     </form>
+    <p class="signup-message" id="signup-message"></p>
   </main>
 
   <footer>
     &copy; 2026 Long Room Media
   </footer>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const btn = this.querySelector('button');
+      const msg = document.getElementById('signup-message');
+
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://app.beehiiv.com/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            publication_id: '6cd57f53-bb02-46ac-b177-d82b2e1588d1'
+          })
+        });
+
+        document.getElementById('signup-form').style.display = 'none';
+        msg.textContent = 'You\'re on the list.';
+      } catch(err) {
+        btn.textContent = 'Sign up';
+        btn.disabled = false;
+        msg.textContent = 'Something went wrong. Please try again.';
+      }
+    });
+  </script>
 
 </body>
 </html>
