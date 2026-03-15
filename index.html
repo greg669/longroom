@@ -172,13 +172,10 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch('https://app.beehiiv.com/subscribe', {
+        const res = await fetch('https://longroom-subscribe.greg-volynsky.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            publication_id: '6cd57f53-bb02-46ac-b177-d82b2e1588d1'
-          })
+          body: JSON.stringify({ email: email })
         });
 
         document.getElementById('signup-form').style.display = 'none';
