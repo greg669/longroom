@@ -148,11 +148,10 @@
       <p>Cable news sound bites, TikTok reels—it's tired and hollow.</p>
       <p>We're going the other direction.</p>
       <p>Three hours, two experts, one question.</p>
-      <p>Follow along</p>
     </div>
     <form class="signup" id="signup-form">
       <input type="email" id="signup-email" placeholder="your@email.com" required>
-      <button type="submit">Sign up</button>
+      <button type="submit">Follow along</button>
     </form>
     <p class="signup-message" id="signup-message"></p>
   </main>
@@ -181,7 +180,7 @@
         document.getElementById('signup-form').style.display = 'none';
         msg.textContent = 'You\'re on the list.';
       } catch(err) {
-        btn.textContent = 'Sign up';
+        btn.textContent = 'Follow along';
         btn.disabled = false;
         msg.textContent = 'Something went wrong. Please try again.';
       }
