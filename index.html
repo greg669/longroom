@@ -19,7 +19,7 @@
     }
 
     nav {
-      padding: 2.5rem 3.5rem 2.5rem 18%;
+      padding: 2.5rem 3.5rem 2.5rem 11%;
     }
 
     .wordmark {
@@ -35,11 +35,19 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 2rem 3.5rem 5rem 18%;
-      max-width: 900px;
+      padding: 2rem 3.5rem 5rem 11%;
+      max-width: 1200px;
     }
 
+    .content-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      column-gap: 9rem;
+    }
+
+    /* Headline spans both columns */
     .headline {
+      grid-column: 1 / -1;
       font-family: 'EB Garamond', Georgia, serif;
       font-size: clamp(2rem, 4.5vw, 3rem);
       font-weight: 400;
@@ -48,11 +56,17 @@
       margin-bottom: 2.25rem;
     }
 
-    hr {
+    /* HR and body copy occupy left column only */
+    .content-grid > hr {
+      grid-column: 1;
       border: none;
       border-top: 1px solid #000;
       width: 2.5rem;
       margin-bottom: 2.25rem;
+    }
+
+    .body-copy {
+      grid-column: 1;
     }
 
     .body-copy p {
@@ -67,9 +81,36 @@
       margin-top: 1.25rem;
     }
 
+    /* Right column: episodes + subscribe, aligned with first body paragraph */
+    .right-col {
+      grid-column: 2;
+      grid-row: 3;
+      align-self: start;
+      padding-top: 0.5rem;
+    }
+
+    .episodes-label {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 2rem;
+    }
+
+    .episodes-body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      line-height: 1.75;
+      font-weight: 400;
+      color: #111;
+    }
+
+    /* Subscribe block inside right column — side by side */
     .signup {
       display: flex;
-      max-width: 400px;
+      flex-direction: row;
       margin-top: 3.25rem;
     }
 
@@ -109,15 +150,6 @@
       color: #000;
     }
 
-    footer {
-      padding: 2rem 3.5rem 2rem 18%;
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 400;
-      color: #bbb;
-      letter-spacing: 0.06em;
-    }
-
     .signup-message {
       margin-top: 1.25rem;
       font-family: 'IBM Plex Sans', sans-serif;
@@ -127,11 +159,20 @@
       letter-spacing: 0.04em;
     }
 
+    footer {
+      padding: 2rem 3.5rem 2rem 11%;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: #bbb;
+      letter-spacing: 0.06em;
+    }
+
     @media (max-width: 600px) {
       nav, main, footer { padding-left: 1.75rem !important; padding-right: 1.75rem; }
       main { padding-bottom: 4rem; }
-      .signup { flex-direction: column; max-width: 100%; }
-      .signup input[type="email"] { border-right: 1px solid #000; border-bottom: none; }
+      .content-grid { grid-template-columns: 1fr; }
+      .right-col { grid-column: 1; grid-row: auto; margin-top: 3rem; }
     }
   </style>
 </head>
@@ -142,19 +183,25 @@
   </nav>
 
   <main>
-    <h1 class="headline"><span style="white-space: nowrap">Deeply Researched Conversations</span><br>on Institutional Reform</h1>
-    <hr>
-    <div class="body-copy">
-      <p>For 250 years, American institutions have proven more resilient than their authors could have imagined.</p>
-      <p>But our institutions are only as useful as our ability to fashion them for our time. In this series, I sit down with thinkers doing the most serious work on institutional reform.</p>
-      <p>Each conversation centers on a single reform, such as fusion voting, court reform, and public media institutions.</p>
-      <p><em>We might as well require a man to wear still the coat which fitted him when a boy as civilized society to remain ever under the regimen of their barbarous ancestors</em>.</p>
+    <div class="content-grid">
+      <h1 class="headline"><span style="white-space: nowrap">Deeply Researched Conversations</span><br>on Institutional Reform</h1>
+      <hr>
+      <div class="body-copy">
+        <p>For 250 years, American institutions have proven more resilient than their authors could have imagined.</p>
+        <p>But our institutions are only as useful as our ability to fashion them for our time. In this series, I sit down with thinkers doing the most serious work on institutional reform.</p>
+        <p>Each conversation centers on a single reform, such as fusion voting, court reform, and public media institutions.</p>
+        <p><em>We might as well require a man to wear still the coat which fitted him when a boy as civilized society to remain ever under the regimen of their barbarous ancestors</em>.</p>
+      </div>
+      <div class="right-col">
+        <p class="episodes-label">Episodes</p>
+        <p class="episodes-body">Coming in April. Subscribe to be notified when the first conversation drops.</p>
+        <form class="signup" id="signup-form">
+          <input type="email" id="signup-email" placeholder="your@email.com" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="signup-message" id="signup-message"></p>
+      </div>
     </div>
-    <form class="signup" id="signup-form">
-      <input type="email" id="signup-email" placeholder="your@email.com" required>
-      <button type="submit">Follow along</button>
-    </form>
-    <p class="signup-message" id="signup-message"></p>
   </main>
 
   <footer>
@@ -181,7 +228,7 @@
         document.getElementById('signup-form').style.display = 'none';
         msg.textContent = 'You\'re on the list.';
       } catch(err) {
-        btn.textContent = 'Follow along';
+        btn.textContent = 'Subscribe';
         btn.disabled = false;
         msg.textContent = 'Something went wrong. Please try again.';
       }
